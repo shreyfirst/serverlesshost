@@ -26,23 +26,9 @@ function handleFileSelect(evt) {
 }
 
 function sendToVercel(name, binary) {
-    const data = JSON.stringify({
-    "name": "my-instant-deployment",
-    "files": [
-      {
-        "file": name,
-        "data": binary,
-        "encoding": "base64"
-      }
-    ],
-    "projectSettings": {
-      "framework": null
-    }
-  });
-
+    const data = "name="+name+"&base="+base;
   // console.log(data)
   const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
@@ -50,10 +36,8 @@ function sendToVercel(name, binary) {
     }
   });
 
-  xhr.open("POST", "https://api.vercel.com/v12/now/deployments");
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Authorization", "Bearer nTTzOm6rofsvMr8w5TzoCEYn");
-  xhr.setRequestHeader("Access-Control-Allow-Origin", "https://stunningwittytrapezoids.shreygupta1.repl.co");
+  xhr.open("POST", "https://serverlesshost.vercel.app/api/host.js");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   
   xhr.send(data);
 }
