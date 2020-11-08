@@ -44,7 +44,7 @@ function sendToVercel(name, binary) {
     }
   });
 
-  xhr.open("POST", "/api/host.js");
+  xhr.open("POST", "https://serverlesshost.vercel.app/api/host.js");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   
   xhr.send(data);

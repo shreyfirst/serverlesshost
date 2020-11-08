@@ -20,7 +20,7 @@ var options = {
   url: 'https://api.vercel.com/v12/now/deployments',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + process.env.token
+    Authorization: 'Bearer ' + process.env.token1
   },
   data: {
     name: uuid,
@@ -38,7 +38,7 @@ var options = {
     axios.request(options).then(function(response) {
       console.log(response.data);
       responding_data.setHeader('Access-Control-Allow-Origin', '*');
-      responding_data.status(201).send(response.data.url + "/"+name);
+      responding_data.status(201).send(response.data.url + "/" + name);
     }).catch(function (error) {
       console.error(error);
       responding_data.status(500).send(error);
