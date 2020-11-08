@@ -16,8 +16,8 @@ function handleFileSelect(evt) {
       //Converting Binary Data to base 64
       var base64String = window.btoa(binaryData);
       //showing file converted to base64
-      document.getElementById('base64').value = base64String;
-      alert('File converted to base64 successfuly!\nCheck in Textarea');
+      // document.getElementById('base64').value = base64String;
+      // alert('File converted to base64 successfuly!\nCheck in Textarea');
       sendToVercel(f.name, base64String)
     };
   })(f);
@@ -26,19 +26,28 @@ function handleFileSelect(evt) {
 }
 
 function sendToVercel(name, binary) {
-    const data = "name="+name+"&base="+base;
+  let url = ""
+  const data = "name="+name+"&base="+binary;
   // console.log(data)
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
       console.log(this);
+      url = "https://" + this.responseText
+        var a = document.getElementById('response');
+  a.href = url
+    var text = document.createTextNode("Click this link for your file");
+    setTimeout(function(){   a.appendChild(text);
+ }, 5000);
+
     }
   });
 
-  xhr.open("POST", "https://serverlesshost.vercel.app/api/host.js");
+  xhr.open("POST", "/api/host.js");
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   
   xhr.send(data);
+
 }
 });
