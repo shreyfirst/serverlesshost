@@ -2,7 +2,7 @@ const http = require("https");
 
 module.exports = async (requesting_data, responding_data) => {
 
-    const { name, base } = req.body;
+    const { name, base } = requesting_data.body;
 
     const options = {
       "method": "POST",
