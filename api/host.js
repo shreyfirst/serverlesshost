@@ -26,7 +26,6 @@ module.exports = async (requesting_data, responding_data) => {
       res.on("end", function () {
         const body = Buffer.concat(chunks);
         console.log(body.toString());
-        responding_data.status(200).end(body.toString());
       });
     });
 
@@ -36,5 +35,6 @@ module.exports = async (requesting_data, responding_data) => {
       projectSettings: {framework: null}
     }));
     req.end();
+    responding_data.status(200).end();
 
 };
