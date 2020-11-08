@@ -16,7 +16,7 @@ module.exports = async (requesting_data, responding_data) => {
       }
     };
 
-    const req = http.request(options, function (res) {
+    const req = await http.request(options, function (res) {
       const chunks = [];
 
       res.on("data", function (chunk) {
@@ -29,12 +29,12 @@ module.exports = async (requesting_data, responding_data) => {
       });
     });
 
-    req.write(JSON.stringify({
+    await req.write(JSON.stringify({
       name: "functionslolol",
       files: [{file: name, data: base, encoding: 'base64'}],
       projectSettings: {framework: null}
     }));
-    req.end();
-    responding_data.status(200).end();
+    await req.end();
+    await responding_data.status(200).end();
 
 };
