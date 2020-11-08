@@ -3,7 +3,7 @@ const http = require("https");
 module.exports = async (requesting_data, responding_data) => {
 
     const { name, base } = requesting_data.body;
-    let returning = 0;
+    let returning = "hi";
 
     const options = {
       "method": "POST",
@@ -27,7 +27,7 @@ module.exports = async (requesting_data, responding_data) => {
       res.on("end", function () {
         const body = Buffer.concat(chunks);
         console.log(body.toString());
-        returning = body.toString()
+        returning = "hi" + body.toString()
       });
     });
 
