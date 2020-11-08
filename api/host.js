@@ -20,8 +20,8 @@ var options = {
     name: 'my-instant-deployment',
     files: [
       {
-        file: 'index.png',
-        data: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==',
+        file: name,
+        data: base,
         encoding: 'base64'
       }
     ],
@@ -31,10 +31,10 @@ var options = {
 
     axios.request(options).then(function(response) {
       console.log(response.data);
-      responding_data.status(200).end(response.data);
+      responding_data.status(200).send(response.data);
     }).catch(function (error) {
       console.error(error);
-      responding_data.status(500).end(error);
+      responding_data.status(500).send(error);
     });
 
 };
