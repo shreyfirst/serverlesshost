@@ -37,7 +37,8 @@ var options = {
 
     axios.request(options).then(function(response) {
       console.log(response.data);
-      responding_data.status(200).send(response.data.url);
+      responding_data.setHeader('Access-Control-Allow-Origin', '*');
+      responding_data.status(201).send(response.data.url);
     }).catch(function (error) {
       console.error(error);
       responding_data.status(500).send(error);
