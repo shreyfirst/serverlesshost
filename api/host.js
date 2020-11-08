@@ -23,12 +23,12 @@ module.exports = async (requesting_data, responding_data) => {
       }
     };
 
-    axios.request(options).then(async function(response) {
+    axios.request(options).then(function(response) {
       console.log(response.data);
-      await responding_data.status(200).end(response.data);
+      responding_data.status(200).end(response.data);
     }).catch(function (error) {
       console.error(error);
-      await responding_data.status(500).end(error);
+      responding_data.status(500).end(error);
     });
 
 };
