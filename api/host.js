@@ -20,7 +20,7 @@ var options = {
   url: 'https://api.vercel.com/v12/now/deployments',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: 'Bearer nTTzOm6rofsvMr8w5TzoCEYn'
+    Authorization: 'Bearer ' + process.env.token
   },
   data: {
     name: uuid,
